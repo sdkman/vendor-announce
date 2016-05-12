@@ -45,7 +45,7 @@ configurations {
 }
 
 sourceSets {
-    functionalTest {
+    funtest {
         groovy.srcDir file('src/funtest/groovy')
         resources.srcDir     file('src/funtest/resources')
         compileClasspath = sourceSets.main.output + sourceSets.test.output + configurations.functTestCompile
@@ -57,12 +57,12 @@ processResources {
     filter ReplaceTokens, tokens: ["application.version": project.version]
 }
 
-task functionalTest(type: Test) {
-    testClassesDir = sourceSets.functionalTest.output.classesDir
-    classpath = sourceSets.functionalTest.runtimeClasspath
+task funtest(type: Test) {
+    testClassesDir = sourceSets.funtest.output.classesDir
+    classpath = sourceSets.funtest.runtimeClasspath
 }
 
-check.dependsOn functionalTest
+check.dependsOn funtest
 
 jar.archiveName = "application.jar"
 
