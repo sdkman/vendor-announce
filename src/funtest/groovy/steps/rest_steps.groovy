@@ -1,4 +1,4 @@
-package io.sdkman
+package steps
 
 import wslite.rest.RESTClientException
 import static cucumber.api.groovy.EN.And

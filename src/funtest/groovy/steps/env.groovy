@@ -1,4 +1,4 @@
-package io.sdkman
+package steps
 
 import groovy.json.JsonSlurper
 import wslite.rest.RESTClient

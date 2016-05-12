@@ -1,4 +1,4 @@
-package io.sdkman
+package steps
 
 import static cucumber.api.groovy.EN.And
 
