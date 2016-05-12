@@ -2,9 +2,9 @@ FROM java:8
 
 MAINTAINER Marco Vermeulen
 
-RUN mkdir /broadcast
+RUN mkdir /announce
 
-ADD build/libs /broadcast
+ADD build/libs /announce
 
-ENTRYPOINT java -jar /broadcast/application.jar
+ENTRYPOINT java -jar /announce/application.jar
 
