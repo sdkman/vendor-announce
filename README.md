@@ -1,19 +1,13 @@
-# SDKMAN! Broadcast API
+# SDKMAN! Announce API
 
 This is a dedicated microservice API used for Announcements on the SDKMAN! platform. It is used by SDKMAN! to announce breaking
-news about Candidate Releases and other important events. It's Broadcast Messages can be consumed through it's REST
+news about Candidate Releases and other important events. It's Broadcast Messages can be consumed through [Broadcast API](https://github.com/sdkman/sdkman-broadcast-api)
 endpoints, as is the case with the SDKMAN! Bash client. It also has the ability to publish it's Messages to social media
 sites such as Twitter.
 
-## Content Negotiation
-
-The default behaviour of the API is to return plain text responses which can be consumed by the Bash client. However,
-it can also return JSON responses through content negotiation. By simply adding an `Accept` header of `application/json`
-to your request, you should see the results in a JSON document.
-
 ## Interacting with the API
 
-We have a [wiki page](https://github.com/sdkman/sdkman-broadcast-api/wiki/Public-Interface) detailing how to interact with
+We have a [wiki page](https://github.com/sdkman/sdkman-announce/wiki/Public-Interface) detailing how to interact with
 the API from Curl. Feel free to adapt these examples for your own use.
 
 ## Running it up locally
