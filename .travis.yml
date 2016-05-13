@@ -16,6 +16,6 @@ cache:
   - "$HOME/.gradle"
 env:
   global:
-  - secure: isO3kgMEplqwnmq1gUkzfXDfCgFOjJzgIOCdJzqI2rzT7N6IDBbMGjyhFpsmo4lU+MGNB+xZFIREKwSTyRaYUwzI6b6MVBru3qh4iT45CFTP4Mn3Bqdr/SXkNl8GSa5sgrKB1Q9tzKpcH8LbrWUJzC5JZv3kHLfj44WP/8AhY/w=
-  - secure: ZNPUbUxWCgu0ymYiPDnRN4UBNMs4ZflzyEhXcvOAXl3vK+bRI7GNUEWh+nbix6+TSZULMMrOa4/pxHiBWN932KDEHOTk0ZbQke61A1tX+9Eis9/bBArtFod3a+62VfclXA3eAt5NQtw3wPfQ1OXGNswY4hs51+CpSdEcUUl0itI=
-  - secure: FlnmU8grwAi3bOLuLtsBPvwE/QmaIPlFsFAQUsDOLbW7uWxM5p9QTbKTfFxFj22n5LRhC7oWhdGEcEV6i15BimB+NhcLtZIpTPaCdmBTeAcuAW5Ob069p4EQ3HAOgAWDvOzYg1AfxSa7neu/rVvfFDTkAxiTwUmy01tq7vqPuqs=
+  - secure: fqVogoAqfnTwNQdnGqmdt50jT6vRQfJCeFSqvKAt7w+KKcSZoQzYH5DZ9dSYaR4kd6dwcAeTRpTuo8a0/xPY/W5GyQHTx3+ZvIcoQn7w5PqmjFZINC1Rrp/7fbWjrubJ1Ujr28S9Ad624q/CxXkXqE1iuCGEnnaclVyoTaBoj/I=
+  - secure: ayeSpEpr54wWv4uLpt6zDgLfh/naGsU81B7JJVKUX9+4870sGWWDvr/osRpYLhSRxHPUTipHlCN6jGgyds/qD0a/EbtUekFGynqGQ6WmOfAQ5d9pq4/SMiEfSXkqwv8sLyY+3V4V9EVdxFhNMBcaqz77Kp0t7ESdC5Hz0POIgzo=
+  - secure: H/edSVKl57Gc00OTeHIx8cfiKHDL9kx5WGzMessSbWdqf+Sxsc7eK0sHVG7VwN1vnAH6ZPoUDM7thcH4MaUuT9k6qdd2XIjGABheQoyM5Zup/QC0z7Evg/FtbMcQAayWjz7w3WphC0FNu26cVStTiihwf9I5+XKdyAs8SSNYgIA=
