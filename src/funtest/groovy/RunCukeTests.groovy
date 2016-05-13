@@ -21,7 +21,7 @@ import org.junit.runner.RunWith
 @CucumberOptions(
 	format=["pretty", "html:build/reports/cucumber"],
 	strict=true,
-	features=["features"],
+	features=["src/funtest/features"],
 	glue=["src/funtest/groovy"],
 	tags=["~@manual", "~@review"]
 )
