@@ -55,8 +55,3 @@ Feature: Security
     And a new message to be announced for "groovy" version "2.4.1" hashtag "#groovylang"
     When the structured message is announced
     Then an "OK" status is returned
-
-  Scenario: The Broadcast endpoints can always be Accessed without Authorisation
-    Given the message "Groovy 2.3.0!" on the date "May 12, 2014" with id "12345"
-    When the latest message is requested with "Accept" header "application/json"
-    And an "OK" status is returned
