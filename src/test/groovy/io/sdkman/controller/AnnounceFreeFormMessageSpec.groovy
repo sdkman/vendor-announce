@@ -16,10 +16,9 @@
 package io.sdkman.controller
 
 import io.sdkman.domain.Broadcast
-import io.sdkman.response.Announcement
 import io.sdkman.repo.BroadcastRepository
 import io.sdkman.request.FreeFormAnnounceRequest
-import io.sdkman.security.SecureHeaders
+import io.sdkman.response.Announcement
 import io.sdkman.service.TextService
 import io.sdkman.service.TwitterService
 import org.springframework.http.HttpStatus
@@ -33,15 +32,11 @@ class AnnounceFreeFormMessageSpec extends Specification {
     TextService textService = Mock()
     TwitterService twitterService = Mock()
 
-    SecureHeaders secureHeaders = new SecureHeaders(token: "default_token")
-    String header = "default_token"
-
     void setup(){
         controller = new AnnounceController(
                 repository: repository,
                 textService: textService,
-                twitterService: twitterService,
-                secureHeaders: secureHeaders)
+                twitterService: twitterService)
     }
 
     void "announce free form should save a free form message"() {
@@ -51,7 +46,7 @@ class AnnounceFreeFormMessageSpec extends Specification {
         def broadcast = new Broadcast(id: "1234", text: text)
 
         when:
-        controller.freeForm(request, header)
+        controller.freeForm(request)
 
         then:
         1 * repository.save({it.text == text}) >> broadcast
@@ -70,7 +65,7 @@ class AnnounceFreeFormMessageSpec extends Specification {
         repository.save(_) >> broadcast
 
         when:
-        ResponseEntity<Announcement> response = controller.freeForm(request, header)
+        ResponseEntity<Announcement> response = controller.freeForm(request)
 
         then:
         response.statusCode == HttpStatus.OK
@@ -87,7 +82,7 @@ class AnnounceFreeFormMessageSpec extends Specification {
         repository.save(_) >> broadcast
 
         when:
-        controller.freeForm(request, header)
+        controller.freeForm(request)
 
         then:
         1 * twitterService.update(status)
