@@ -6,5 +6,5 @@ RUN mkdir /announce
 
 ADD build/libs /announce
 
-ENTRYPOINT java -jar /announce/application.jar
+ENTRYPOINT java -Djava.security.egd=file:/dev/./urandom -jar /announce/application.jar
 
