@@ -1,4 +1,4 @@
-# SDKMAN! Announce API
+# SDKMAN! Vendor Announce API
 
 This is a dedicated microservice API used for Announcements on the SDKMAN! platform. It is used by SDKMAN! to announce breaking
 news about Candidate Releases and other important events. It's Broadcast Messages can be consumed through [Broadcast API](https://github.com/sdkman/sdkman-broadcast-api)
