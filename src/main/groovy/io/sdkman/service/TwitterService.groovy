@@ -31,8 +31,8 @@ class TwitterService {
         tweetAsync(status)
     }
 
-    def tweet = { status -> twitter.timelineOperations().updateStatus(status) }
-
     def tweetAsync = { status -> withPool() { tweet.async()(status) } }
+
+    def tweet = { status -> twitter.timelineOperations().updateStatus(status) }
 
 }
