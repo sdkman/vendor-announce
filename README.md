@@ -9,11 +9,11 @@ sites such as Twitter.
 
 You will need to have MongoDB up and running locally on the default port.
 
-    $ mongod
+    $ docker run -d --net=host mongo:latest
 
-Once running, step into the project folder and run the tests.
+Once running, step into the project folder and build.
  
-    $ ./gradlew clean build
+    $ ./gradlew clean assemble
 
 We can now run the app up locally with a simple
 
