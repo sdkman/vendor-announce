@@ -40,16 +40,16 @@ dependencies {
 test.testLogging.exceptionFormat = 'full'
 
 configurations {
-    functTestCompile.extendsFrom testCompile
-    functTestRuntime.extendsFrom testRuntime
+    funTestCompile.extendsFrom testCompile
+    funTestRuntime.extendsFrom testRuntime
 }
 
 sourceSets {
     funtest {
         groovy.srcDir file('src/funtest/groovy')
         resources.srcDir     file('src/funtest/resources')
-        compileClasspath = sourceSets.main.output + sourceSets.test.output + configurations.functTestCompile
-        runtimeClasspath = output + compileClasspath + configurations.functTestRuntime
+        compileClasspath = sourceSets.main.output + sourceSets.test.output + configurations.funTestCompile
+        runtimeClasspath = output + compileClasspath + configurations.funTestRuntime
     }
 }
 
