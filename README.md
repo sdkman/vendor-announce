@@ -5,11 +5,6 @@ news about Candidate Releases and other important events. It's Broadcast Message
 endpoints, as is the case with the SDKMAN! Bash client. It also has the ability to publish it's Messages to social media
 sites such as Twitter.
 
-## Interacting with the API
-
-We have a [wiki page](https://github.com/sdkman/sdkman-announce/wiki/Public-Interface) detailing how to interact with
-the API from Curl. Feel free to adapt these examples for your own use.
-
 ## Running it up locally
 
 You will need to have MongoDB up and running locally on the default port.
@@ -22,11 +17,17 @@ Once running, step into the project folder and run the tests.
 
 We can now run the app up locally with a simple
 
-    $ java -jar build/libs/sdkman-broadcast-api-1.0.0-SNAPSHOT.jar
+    $ java -jar build/libs/application.jar
+
+## Running tests
+
+The service has a comprehensive suite of Acceptance Tests, as well as Unit Tests.
+
+		$ ./gradlew check
 
 ## Environment Variables
 
-The application can be configured by using environment variables.
+The application can be configured at runtime by using environment variables.
 
 #### MongoDB
 
@@ -39,16 +40,6 @@ The application can be configured by using environment variables.
 `MONGO_USERNAME`: Username
 
 `MONGO_PASSWORD`: Password
-
-#### OAuth
-
-`CLIENT_ID`: Client Application Id
-
-`CLIENT_SECRET`: Client Application Secret
-
-`AUTH_USERNAME`: Admin Authentication Username
-
-`AUTH_PASSWORD`: Admin Authentication Password
 
 #### Twitter
 
