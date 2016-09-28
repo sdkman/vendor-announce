@@ -7,5 +7,5 @@ Feature: Health Check
 		And the application should report a name of "SDKMAN Vendor Announce Service"
 
 	Scenario: UptimeRobot HEADs the health check endpoint
-		When an HTTP PUT on the "/admin/info" endpoint
+		When an HTTP HEAD on the "/admin/info" endpoint
 		Then an "METHOD_NOT_ALLOWED" status is returned

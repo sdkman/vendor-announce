@@ -32,7 +32,7 @@ class HttpHelper {
         client.get(map)
     }
 
-    static put(map, closure) {
-        client.put(map, closure)
+    static head(map) {
+        client.head(map)
     }
 }

@@ -54,18 +54,11 @@ And(~/^the application should report a name of "(.*)"$/) { String name ->
 }
 
 And(~/^an HTTP GET on the "([^"]*)" endpoint$/) { String endpoint ->
-    http {
-        get(path: endpoint)
-    }
+    http { get(path: endpoint) }
 }
 
-And(~/^an HTTP PUT on the "([^"]*)" endpoint$/) { String endpoint ->
-    http {
-        put(path: endpoint) {
-            type "application/json"
-            json text: ""
-        }
-    }
+And(~/^an HTTP HEAD on the "([^"]*)" endpoint$/) { String endpoint ->
+    http { head(path: endpoint) }
 }
 
 private http(restAction) {
