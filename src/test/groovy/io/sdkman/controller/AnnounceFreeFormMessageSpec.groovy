@@ -41,7 +41,7 @@ class AnnounceFreeFormMessageSpec extends Specification {
 
     void "announce free form should save a free form message"() {
         given:
-        def text = "message"
+        def text = "broadcast message"
         def request = new FreeFormAnnounceRequest(text: text)
         def broadcast = new Broadcast(id: "1234", text: text)
 
@@ -50,6 +50,21 @@ class AnnounceFreeFormMessageSpec extends Specification {
 
         then:
         1 * repository.save({it.text == text}) >> broadcast
+    }
+
+    void "announce free form should not allow a message that exceeds terminal width"() {
+        given:
+        def text = "1234567890123456789012345678901234567890123456789012345678901234567"
+        def request = new FreeFormAnnounceRequest(text: text)
+        def broadcast = new Broadcast(id: "1234", text: text)
+
+        when:
+        ResponseEntity<Announcement> response = controller.freeForm(request)
+
+        then:
+        0 * repository.save({it.text == text})
+        response.statusCode == HttpStatus.BAD_REQUEST
+        response.body.message == "message exceeds 64 characters"
     }
 
     void "announce free form should return a broadcast id after saving"() {
