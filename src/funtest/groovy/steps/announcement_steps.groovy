@@ -17,9 +17,16 @@ package steps
 
 import static cucumber.api.groovy.EN.And
 
-And(~'^a new message to be announced for "([^"]*)" version "([^"]*)" hashtag "([^"]*)"$')
-        { String msgCandidate, String msgVersion, String msgHashtag ->
+And(~'^a new message to be announced for "([^"]*)" version "([^"]*)" url "([^"]*)"$')
+        { String msgCandidate, String msgVersion, String releaseUrl ->
     candidate = msgCandidate
     version = msgVersion
-    hashtag = msgHashtag
+    url = releaseUrl
+}
+
+And(~'^a new message to be announced for "([^"]*)" version "([^"]*)"$')
+        { String msgCandidate, String msgVersion ->
+    candidate = msgCandidate
+    version = msgVersion
+    url = ""
 }

@@ -24,10 +24,12 @@ And(~'^an "([^"]*)" status is returned$') { String status ->
 }
 
 And(~'^the structured message is announced$') { ->
+    def params = [candidate: candidate, version: version]
+    def allParams = url ? params << [url: url] : params
     http{
         post(path: "/announce/struct") {
             type "application/json"
-            json candidate: candidate, version: version, hashtag: hashtag
+            json allParams
         }
     }
 }

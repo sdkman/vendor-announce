@@ -19,7 +19,6 @@ import io.sdkman.domain.Broadcast
 import io.sdkman.repo.BroadcastRepository
 import io.sdkman.request.StructuredAnnounceRequest
 import io.sdkman.response.Announcement
-import io.sdkman.service.TextService
 import io.sdkman.service.TwitterService
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.ResponseEntity
@@ -38,17 +37,15 @@ class AnnounceController {
     BroadcastRepository repository
 
     @Autowired
-    TextService textService
-
-    @Autowired
     TwitterService twitterService
 
     @RequestMapping(value = "/announce/struct", method = POST)
     @ResponseBody
     ResponseEntity<Announcement> structured(@RequestBody StructuredAnnounceRequest request) {
-        def message = textService.composeStructuredMessage(request.candidate, request.version, request.hashtag)
-        twitterService.update(message)
+        def message = "${request.candidate} ${request.version} now available for download."
+        def tweet = request.url ? "$message ${request.url}" : message
+        twitterService.update(tweet)
         def broadcast = repository.save(new Broadcast(text: message, date: new Date()))
-        new ResponseEntity<Announcement>(new Announcement(status: OK.value(), id: broadcast.id, message: broadcast.text), OK)
+        new ResponseEntity(new Announcement(status: OK.value(), id: broadcast.id, message: broadcast.text), OK)
     }
 }

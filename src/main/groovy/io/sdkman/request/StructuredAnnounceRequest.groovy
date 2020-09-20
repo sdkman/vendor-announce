@@ -18,5 +18,6 @@ package io.sdkman.request
 class StructuredAnnounceRequest {
     String candidate
     String version
-    String hashtag
+    String hashtag = ""
+    String url = ""
 }
