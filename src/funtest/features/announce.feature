@@ -23,11 +23,3 @@ Feature: Announce
     And the content type is "application/json"
     And a valid Broadcast Identifier is returned
     And the message "Groovy 2.3.0 released on SDKMAN! #groovylang" is available
-
-  Scenario: Announce a new Free Form Message
-    Given a new free form message "This is a free form message" to be announced
-    When the free form message is announced
-    Then an "OK" status is returned
-    And the content type is "application/json"
-    And a valid Broadcast Identifier is returned
-    Then the message "This is a free form message" is available

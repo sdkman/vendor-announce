@@ -17,10 +17,8 @@ package io.sdkman.controller
 
 import io.sdkman.domain.Broadcast
 import io.sdkman.repo.BroadcastRepository
-import io.sdkman.request.FreeFormAnnounceRequest
 import io.sdkman.request.StructuredAnnounceRequest
 import io.sdkman.response.Announcement
-import io.sdkman.response.Error
 import io.sdkman.service.TextService
 import io.sdkman.service.TwitterService
 import org.springframework.beans.factory.annotation.Autowired
@@ -30,15 +28,11 @@ import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.ResponseBody
 
-import static org.springframework.http.HttpStatus.BAD_REQUEST
 import static org.springframework.http.HttpStatus.OK
 import static org.springframework.web.bind.annotation.RequestMethod.POST
 
 @Controller
 class AnnounceController {
-
-    // 80 characters terminal width, less length of date prefix of 16
-    static final MAX_MESSAGE_LENGTH = 80 - 16
 
     @Autowired
     BroadcastRepository repository
@@ -56,17 +50,5 @@ class AnnounceController {
         twitterService.update(message)
         def broadcast = repository.save(new Broadcast(text: message, date: new Date()))
         new ResponseEntity<Announcement>(new Announcement(status: OK.value(), id: broadcast.id, message: broadcast.text), OK)
-    }
-
-    @RequestMapping(value = "/announce/freeform", method = POST)
-    @ResponseBody
-    ResponseEntity<Announcement> freeForm(@RequestBody FreeFormAnnounceRequest request) {
-        if (request.text.length() <= MAX_MESSAGE_LENGTH) {
-            twitterService.update(request.text)
-            def broadcast = repository.save(new Broadcast(text: request.text, date: new Date()))
-            new ResponseEntity(new Announcement(status: OK.value(), id: broadcast.id, message: broadcast.text), OK)
-        } else {
-            new ResponseEntity(new Error(status: BAD_REQUEST.value(), message: "message exceeds $MAX_MESSAGE_LENGTH characters"), BAD_REQUEST)
-        }
     }
 }

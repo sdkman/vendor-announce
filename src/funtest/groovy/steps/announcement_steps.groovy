@@ -23,7 +23,3 @@ And(~'^a new message to be announced for "([^"]*)" version "([^"]*)" hashtag "([
     version = msgVersion
     hashtag = msgHashtag
 }
-
-And(~'^a new free form message "([^"]*)" to be announced$') { String message ->
-    freeForm = message
-}

@@ -32,15 +32,6 @@ And(~'^the structured message is announced$') { ->
     }
 }
 
-And(~'^the free form message is announced$') { ->
-    http {
-        post(path: "/announce/freeform") {
-            type "application/json"
-            json text: freeForm
-        }
-    }
-}
-
 And(~'^the content type is "([^"]*)"$') { String contentType ->
     assert headers['Content-Type'].contains(contentType)
 }
