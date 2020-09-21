@@ -43,9 +43,9 @@ class AnnounceController {
     @ResponseBody
     ResponseEntity<Announcement> structured(@RequestBody StructuredAnnounceRequest request) {
         def message = "${request.candidate} ${request.version} available on SDKMAN!"
-        def tweet = request.url ? "$message ${request.url}" : message
-        twitterService.update(tweet)
-        def broadcast = repository.save(new Broadcast(text: message, date: new Date()))
+        def urlMessage = request.url ? "$message ${request.url}" : message
+        twitterService.update(urlMessage)
+        def broadcast = repository.save(new Broadcast(text: urlMessage, date: new Date()))
         new ResponseEntity(new Announcement(status: OK.value(), id: broadcast.id, message: broadcast.text), OK)
     }
 }

@@ -16,7 +16,7 @@
 
 Feature: Announce
 
-  Scenario: Announce a new Structured Message
+  Scenario: Announce a new Structured Message without URL
     Given a new message to be announced for "groovy" version "2.3.0"
     When the structured message is announced
     Then an "OK" status is returned
@@ -30,4 +30,4 @@ Feature: Announce
     Then an "OK" status is returned
     And the content type is "application/json"
     And a valid Broadcast Identifier is returned
-	And the message "groovy 2.3.0 available on SDKMAN!" is available
+	And the message "groovy 2.3.0 available on SDKMAN! https://t.co/qwerty" is available
