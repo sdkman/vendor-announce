@@ -39,7 +39,7 @@ class AnnounceStructuredMessageSpec extends Specification {
         def candidate = "groovy"
         def version = "2.3.0"
         def request = new StructuredAnnounceRequest(candidate: candidate, version: version)
-        def structuredMessage = "groovy 2.3.0 now available for download."
+        def structuredMessage = "groovy 2.3.0 available on SDKMAN!"
 
         when:
         controller.structured(request)
@@ -69,7 +69,7 @@ class AnnounceStructuredMessageSpec extends Specification {
     void "announce structured should post a structured message to twitter without url"() {
         given:
         def request = new StructuredAnnounceRequest(candidate: "groovy", version: "2.4.0")
-        def status = "groovy 2.4.0 now available for download."
+        def status = "groovy 2.4.0 available on SDKMAN!"
         def broadcast = new Broadcast(id: "1234", text: status, date: new Date())
 
         and:
@@ -86,7 +86,7 @@ class AnnounceStructuredMessageSpec extends Specification {
         given:
         def url = "t.co/qwerty"
         def request = new StructuredAnnounceRequest(candidate: "groovy", version: "2.4.0", url: url)
-        def message = "groovy 2.4.0 now available for download."
+        def message = "groovy 2.4.0 available on SDKMAN!"
         def status = "$message $url"
         def broadcast = new Broadcast(id: "1234", text: message, date: new Date())
 

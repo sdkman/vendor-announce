@@ -22,7 +22,7 @@ Feature: Announce
     Then an "OK" status is returned
     And the content type is "application/json"
     And a valid Broadcast Identifier is returned
-    And the message "groovy 2.3.0 now available for download." is available
+    And the message "groovy 2.3.0 available on SDKMAN!" is available
 
   Scenario: Announce a new Structured Message with URL
     Given a new message to be announced for "groovy" version "2.3.0" url "https://t.co/qwerty"
@@ -30,4 +30,4 @@ Feature: Announce
     Then an "OK" status is returned
     And the content type is "application/json"
     And a valid Broadcast Identifier is returned
-    And the message "groovy 2.3.0 now available for download." is available
+	And the message "groovy 2.3.0 available on SDKMAN!" is available

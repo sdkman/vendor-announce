@@ -42,7 +42,7 @@ class AnnounceController {
     @RequestMapping(value = "/announce/struct", method = POST)
     @ResponseBody
     ResponseEntity<Announcement> structured(@RequestBody StructuredAnnounceRequest request) {
-        def message = "${request.candidate} ${request.version} now available for download."
+        def message = "${request.candidate} ${request.version} available on SDKMAN!"
         def tweet = request.url ? "$message ${request.url}" : message
         twitterService.update(tweet)
         def broadcast = repository.save(new Broadcast(text: message, date: new Date()))
