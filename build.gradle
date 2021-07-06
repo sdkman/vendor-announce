@@ -2,26 +2,31 @@ import org.apache.tools.ant.filters.*
 
 buildscript {
     repositories {
+        mavenCentral()
         jcenter()
-        maven { url "http://repo.spring.io/libs-release" }
+        maven { url "https://plugins.gradle.org/m2/" }
+        maven { url "https://repo.spring.io/libs-release" }
     }
     dependencies {
         classpath "org.springframework.boot:spring-boot-gradle-plugin:1.1.5.RELEASE"
-        classpath 'nl.javadude.gradle.plugins:license-gradle-plugin:0.11.0'
+        classpath "ch.kk7:gradle-spawn-plugin:1.0.20180924200750"
+        classpath 'com.netflix.nebula:nebula-release-plugin:4.2.0'
     }
 }
 
 apply plugin: 'groovy'
 apply plugin: 'spring-boot'
-apply plugin: 'license'
+apply plugin: "ch.kk7.spawn"
+apply plugin: 'nebula.nebula-release'
 
 repositories {
+    mavenCentral()
     jcenter()
     maven { url 'http://repo.spring.io/release' }
 }
 
 dependencies {
-    compile "org.codehaus.groovy:groovy-all:2.4.3"
+    compile "org.codehaus.groovy:groovy-all:2.4.19"
     compile "org.codehaus.gpars:gpars:1.2.1"
     compile "org.springframework.boot:spring-boot-starter-web"
     compile "org.springframework.boot:spring-boot-starter-actuator"
@@ -40,33 +45,37 @@ dependencies {
 test.testLogging.exceptionFormat = 'full'
 
 configurations {
-    funTestCompile.extendsFrom testCompile
-    funTestRuntime.extendsFrom testRuntime
+    funtestCompile.extendsFrom testCompile
+    funtestRuntime.extendsFrom testRuntime
 }
 
 sourceSets {
     funtest {
-        groovy.srcDir file('src/funtest/groovy')
-        resources.srcDir     file('src/funtest/resources')
-        compileClasspath = sourceSets.main.output + sourceSets.test.output + configurations.funTestCompile
-        runtimeClasspath = output + compileClasspath + configurations.funTestRuntime
+        groovy.srcDir file("src/funtest/groovy")
+        resources.srcDir     file("src/funtest/resources")
+        compileClasspath = sourceSets.main.output + sourceSets.test.output + configurations.funtestCompile
+        runtimeClasspath = output + compileClasspath + configurations.funtestRuntime
     }
 }
 
-processResources {
-    filter ReplaceTokens, tokens: ["application.version": project.version]
+task startService(type: SpawnTask) {
+    dependsOn assemble
+    command "java -Djava.security.egd=file:/dev/./urandom -jar build/libs/application.jar"
+    waitFor "Started Application"
+    waitForTimeout 30000
 }
 
-task funtest(type: Test) {
+task stopService(type: KillTask) {
+    kills startService
+}
+
+task functionalTest(type: Test) {
+    dependsOn startService
     testClassesDir = sourceSets.funtest.output.classesDir
     classpath = sourceSets.funtest.runtimeClasspath
+    finalizedBy stopService
 }
-
-check.dependsOn funtest
 
 jar.archiveName = "application.jar"
 
-license {
-	header file('gradle/HEADER')
-	strictCheck true
-}
+check.dependsOn functionalTest
