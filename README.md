@@ -1,11 +1,20 @@
 # SDKMAN! Vendor Announce API
 
-This is a dedicated microservice API used for Announcements on the SDKMAN! platform. It is used by SDKMAN! to announce breaking
-news about Candidate Releases and other important events. It's Broadcast Messages can be consumed through [Broadcast API](https://github.com/sdkman/sdkman-broadcast-api)
-endpoints, as is the case with the SDKMAN! Bash client. It also has the ability to publish it's Messages to social media
-sites such as Twitter.
+![Build status](https://github.com/sdkman/vendor-announce/actions/workflows/release.yml/badge.svg)
+![GitHub tag (latest by date)](https://img.shields.io/github/v/tag/sdkman/vendor-announce)
 
-## Running it up locally
+This is a dedicated microservice API used for Announcements on the SDKMAN!
+platform. It is used by SDKMAN! to announce breaking news about Candidate
+Releases and other important events. It's Broadcast Messages can be consumed
+through [Broadcast API](https://github.com/sdkman/sdkman-broadcast-api)
+endpoints, as is the case with the SDKMAN! Bash client. It also has the ability
+to publish it's messages to social media sites such as Twitter.
+
+## Run local
+
+Ensure that you have Java 8 installed.
+
+	$ sdk install java 8.0.302-tem
 
 You will need to have MongoDB up and running locally on the default port.
 
@@ -19,9 +28,9 @@ We can now run the app up locally with a simple
 
     $ java -jar build/libs/application.jar
 
-## Running tests
+## Tests
 
-The service has a comprehensive suite of Acceptance Tests, as well as Unit Tests.
+The service has a comprehensive suite of Acceptance Tests (that run standalone), as well as Unit Tests.
 
 		$ ./gradlew check
 
